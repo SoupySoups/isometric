@@ -28,7 +28,7 @@ class window_manager:
             self.cm.get_int_setting("Window", "default_height"),
         )  # Get default window size from configuration
 
-        self.lm.log.info(f"Creating window {self.window_name} with size: {self.size}")
+        self.lm.log.info(f'Creating window "{self.window_name}" with size: {self.size[0]}x{self.size[1]}')
         pygame.display.set_caption(self.window_name)  # Set window name
 
         # Set window properties based on configuration
@@ -80,7 +80,7 @@ class window_manager:
         return self.screen
 
     def update(self, content: pygame.Surface):
-        self.target.blit(pygame.transform.scale(content, self.size), (0, 0))
+        self.screen.blit(pygame.transform.scale(content, self.size), (0, 0))
 
         self.fps = int(self.clock.get_fps())
 

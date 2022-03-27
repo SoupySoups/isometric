@@ -5,7 +5,7 @@ am = application_manager.application_manager()
 
 
 def main():
-    pass
+    am.run()
 
 
 if __name__ == "__main__":
