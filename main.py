@@ -5,6 +5,7 @@ am = application_manager.application_manager()
 
 
 def main():
+    am.dm.load_data('levels/test_level.tmx')
     am.run()
 
 

@@ -5,8 +5,8 @@ class screen_manager:
     def __init__(self, configuration_manager, logging_manager) -> None:
         self.cm = configuration_manager
         self.lm = logging_manager
-        self.current = screen('intro', 'cutscene', x=self.cm.get_int_setting("Window", "default_width")/3, y=self.cm.get_int_setting("Window", "default_height")/3)
 
+        self.current = screen('intro', 'cutscene', x=self.cm.get_int_setting("Window", "default_width")/3, y=self.cm.get_int_setting("Window", "default_height")/3)
 
         self.lm.log.info("Screen manager initialized.")
 

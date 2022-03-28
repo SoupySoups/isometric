@@ -73,6 +73,7 @@ class window_manager:
 
     def change_name(self, name):
         self.window_name = name
+        pygame.display.set_caption(self.window_name)  # Set window name
 
     def resize(self, size):
         self.size = size
