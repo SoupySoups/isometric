@@ -6,7 +6,12 @@ class screen_manager:
         self.cm = configuration_manager
         self.lm = logging_manager
 
-        self.current = screen('intro', 'cutscene', x=self.cm.get_int_setting("Window", "default_width")/3, y=self.cm.get_int_setting("Window", "default_height")/3)
+        self.current = screen(
+            "intro",
+            "cutscene",
+            x=self.cm.get_int_setting("Window", "default_width") / 3,
+            y=self.cm.get_int_setting("Window", "default_height") / 3,
+        )
 
         self.lm.log.info("Screen manager initialized.")
 
@@ -16,6 +21,7 @@ class screen_manager:
     def get_current(self):
         return self.current
 
+
 class screen:
     def __init__(self, name, screen_type=None, surface=None, x=None, y=None):
         self.name = name
@@ -23,4 +29,6 @@ class screen:
         if surface is not None:
             self.surface = surface
         else:
-            self.surface = pygame.Surface((300 if x is None else x, 300 if y is None else y))
+            self.surface = pygame.Surface(
+                (300 if x is None else x, 300 if y is None else y)
+            )

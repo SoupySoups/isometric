@@ -28,7 +28,9 @@ class window_manager:
             self.cm.get_int_setting("Window", "default_height"),
         )  # Get default window size from configuration
 
-        self.lm.log.info(f'Creating window "{self.window_name}" with size: {self.size[0]}x{self.size[1]}')
+        self.lm.log.info(
+            f'Creating window "{self.window_name}" with size: {self.size[0]}x{self.size[1]}'
+        )
         pygame.display.set_caption(self.window_name)  # Set window name
 
         # Set window properties based on configuration

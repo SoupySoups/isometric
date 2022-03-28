@@ -1,6 +1,7 @@
 import pytmx
 from src.utils.data_types import Point
 
+
 class data_manager:
     def __init__(self, config_manager, log_manager):
         self.cm = config_manager
@@ -16,6 +17,7 @@ class data_manager:
 
     def reload_data(self):
         self.load_data(self.current_level.filename, self.cm, self.lm)
+
 
 class level:
     def __init__(self, filename, config_manager, log_manager):
