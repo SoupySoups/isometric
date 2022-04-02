@@ -29,7 +29,9 @@ class application_manager:
     def run(self) -> None:
         while True:
             if not self.dm.current_level:
-                raise AttributeError("No currently loaded.")
+                raise AttributeError("No level currently loaded.")
+
+            self.sm.current.surface.fill(self.dm.current_level.background_color) # Clear screen.
 
             self.events = pygame.event.get()
             for event in self.events:
@@ -37,6 +39,6 @@ class application_manager:
                     pygame.quit()
                     quit()
 
-            self.sm.current.surface.fill(self.dm.current_level.background_color)
+            self.rm.render(self.dm.current_level, self.sm.current.surface) # Render.
 
             self.wm.update(self.sm.get_current().surface)  # Update screen.

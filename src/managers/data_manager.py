@@ -1,5 +1,6 @@
 import pytmx
 from src.utils.data_types import Point
+import src.utils.sorters as sorters
 
 
 class data_manager:
@@ -38,7 +39,10 @@ class level:
 
         self.version = self.raw_tmxdata.version
 
-        self.lm.log.info(f"Successfully loaded level: {self.filename} z{self.version}")
+        self.layers = self.raw_tmxdata.layers
+        self.tile_layers, self.non_tile_layers = sorters.sort_by_instance(self.layers, pytmx.TiledTileLayer)
+
+        self.lm.log.info(f"Successfully loaded level: {self.filename} v{self.version}")
 
     def get_image_at(self, point: Point):
         point.check_3d()
