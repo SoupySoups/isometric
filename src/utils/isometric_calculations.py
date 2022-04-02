@@ -3,6 +3,5 @@ def isometric(x, y, z):
 
 
 def rev_isometric(isometricx, isometricy, z):
-    y = (isometricy  / 5 - isometricx / 10 + z * 14 / 5) / 2
+    y = (isometricy / 5 - isometricx / 10 + z * 14 / 5) / 2
     return isometricx / 10 + y, y, z
-

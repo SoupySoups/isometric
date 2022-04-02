@@ -40,7 +40,9 @@ class level:
         self.version = self.raw_tmxdata.version
 
         self.layers = self.raw_tmxdata.layers
-        self.tile_layers, self.non_tile_layers = sorters.sort_by_instance(self.layers, pytmx.TiledTileLayer)
+        self.tile_layers, self.non_tile_layers = sorters.sort_by_instance(
+            self.layers, pytmx.TiledTileLayer
+        )
 
         self.lm.log.info(f"Successfully loaded level: {self.filename} v{self.version}")
 
