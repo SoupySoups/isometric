@@ -1,37 +1,24 @@
-## Welcome to GitHub Pages
+## Welcome to the Documentation
 
-You can use the [editor on GitHub](https://github.com/SoupySoups/isometric/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+## Modules
+### External Modules
+ - The [isometric game](https://github.com/SoupySoups/isometric) uses a uses [Pygame](https://www.pygame.org) to manage and draw to a window.
+ - We also use [PyTMX](https://github.com/bitcraft/pytmx) to parse and load levels, tilesets, and properties into the application.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Internal Modules 
+  - The game primarily runs through the application manager, located at `src/managers/application_manager.py` to load all other internal modules/ managers.
 
-### Markdown
+## Creating levels
+### Software
+ - For our level creation software we use [Tiled](https://www.mapeditor.org/) it is a very flexible 2D map editor and is highly recommended to install if you are going to develop new levels.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Creating a new tileset
+ - When creating a new level, you need a couple of prerequisites. Before creating a map you must have a tile set to pull all the images from. You can either use one of the pre-made tilesets (skip the rest of this section) or create your own.
 
-```markdown
-Syntax highlighted code block
+ 1.  Open your favorite image editor and create your tile art, each tile should be 20x24 but the overall image size does not matter as long as each tile is on the 20x24 grid starting at `(0, 0)`.
+![grid](/isometric/assets/grid.png)
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/SoupySoups/isometric/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+ 2.  Start by opening and going to File > New > New Tileset
+ 3.  Name your tileset a **meaningful** name and set your source to your previously created image.
+ 4.  Hit save as and save in a spot you can remember as a `.tsx` file.
+ 5.  Finish this
