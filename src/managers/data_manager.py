@@ -1,4 +1,5 @@
 import pytmx
+import src.managers.object_manager as object_manager
 from src.utils.data_types import Point
 import src.utils.sorters as sorters
 
@@ -43,6 +44,10 @@ class level:
         self.tile_layers, self.non_tile_layers = sorters.sort_by_instance(
             self.layers, pytmx.TiledTileLayer
         )
+        self.sorted_tiles = sorters.sort_tile_distance(self.tile_layers)
+
+        self.om = object_manager.object_manager(self.cm, self.lm)
+        self.om.load_from_id_dict(self.raw_tmxdata.objects_by_id)
 
         self.lm.log.info(f"Successfully loaded level: {self.filename} v{self.version}")
 

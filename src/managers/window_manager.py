@@ -5,13 +5,14 @@ with QuietPrint():
 
 
 class window_manager:
-    def __init__(
-        self, config_manager, logging_manager, name="Untitled", width=900, height=900
-    ):
+    def __init__(self, config_manager, logging_manager):
         self.lm = logging_manager
         self.cm = config_manager
 
-        self.window_name = name
+        self.window_name = self.cm.get_str_setting("Window", "window_name")
+        self.window_icon = pygame.image.load(
+            self.cm.get_str_setting("Window", "window_icon")
+        )
 
         self.lm.log.info(
             "Successfully initialized %s pygame modules, %s failed." % (pygame.init())
@@ -32,6 +33,7 @@ class window_manager:
             f'Creating window "{self.window_name}" with size: {self.size[0]}x{self.size[1]}'
         )
         pygame.display.set_caption(self.window_name)  # Set window name
+        pygame.display.set_icon(self.window_icon)  # Set window icon
 
         # Set window properties based on configuration
         self.window_flags = 0

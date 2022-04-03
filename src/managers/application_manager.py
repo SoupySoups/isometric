@@ -33,6 +33,8 @@ class application_manager:
 
             self.sm.current.surface.fill(
                 self.dm.current_level.background_color
+                if self.dm.current_level.background_color is not None
+                else (0, 0, 0)
             )  # Clear screen.
 
             self.events = pygame.event.get()

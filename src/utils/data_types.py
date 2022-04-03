@@ -23,11 +23,16 @@ class Point:
             raise TypeError("Point must be 2D")
         return True
 
+    def as_tuple(self) -> tuple:
+        return (self.x, self.y, self.z) if self.type != Point2D else (self.x, self.y)
+
 
 class Point2D:
     def __init__(self, x, y) -> None:
         self.x = x
         self.y = y
+
+        self.type = self
 
     def __str__(self) -> str:
         return f"Point2D at {self.x}, {self.y}"
@@ -38,12 +43,20 @@ class Point2D:
     def as_tuple(self) -> tuple:
         return (self.x, self.y)
 
+    def check_3d(self) -> bool:
+        return False
+
+    def check_2d(self) -> bool:
+        return True
+
 
 class Point3D:
     def __init__(self, x, y, z) -> None:
         self.x = x
         self.y = y
         self.z = z
+
+        self.type = self
 
     def __str__(self) -> str:
         return f"Point3D at {self.x}, {self.y}, {self.z}"
@@ -53,3 +66,9 @@ class Point3D:
 
     def as_tuple(self) -> tuple:
         return (self.x, self.y, self.z)
+
+    def check_3d(self) -> bool:
+        return True
+
+    def check_2d(self) -> bool:
+        return False

@@ -1,4 +1,3 @@
-from src.utils.data_types import Point
 from src.utils.isometric_calculations import isometric
 
 
@@ -10,10 +9,7 @@ class render_manager:
         self.lm.log.info("Render manager initialized.")
 
     def render(self, level, surface):
-        for z, layer in enumerate(level.tile_layers):
-            if layer in level.tile_layers:
-                for y in range(layer.height):
-                    for x in range(layer.width):
-                        tile = level.get_image_at(Point(x, y, z))
-                        if tile:
-                            surface.blit(tile, isometric(x, y, z))
+        for tile in level.sorted_tiles:
+            tile_image = level.get_image_at(tile)
+            if tile_image:
+                surface.blit(tile_image, isometric(tile).as_tuple())
