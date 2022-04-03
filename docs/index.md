@@ -40,5 +40,5 @@ As you can see here we are creating a basic message property for our component, 
 
 ### Adding component arguments
 To pass an argument to a component simply create another property in tiled with your desired argument type and name it `nameOfYourComponent.argumentName` such as `someComponent.message`. Set this fields value to your data such as `"Hello World"` and now that argument will be passed to your component in the `args` dictionary!
-![grid](/isometric/assets/components.png)
+![components](/isometric/assets/components.png)
 
