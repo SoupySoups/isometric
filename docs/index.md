@@ -21,4 +21,24 @@
  2.  Start by opening and going to File > New > New Tileset
  3.  Name your tileset a **meaningful** name and set your source to your previously created image.
  4.  Hit save as and save in a spot you can remember as a `.tsx` file.
- 5.  Finish this
+ 5.  Finish this blah blah blah FIX ME!
+
+## Creating an object
+FIX ME!
+
+### Adding components
+This game uses a entity component system or ECS for short, this means that each entity does not get its own file but rather each entity gets components added to it to control certain behaviors.
+
+To add a property you can select any object you have placed down, go to its properties panel, and add a new property by pressing the blue `+` in the bottom left corner. Name this new property `component_someComponent` and set its type to string. In this new field set its value to something like `path.to.your.component` such as `src.components.someComponent`. Now in python if you add a file at `/src/components/someComponent.py` and create this basic component:
+```py
+class component:
+    def __init__(self, args) -> None:
+        self.message = args["message"]
+```
+
+As you can see here we are creating a basic message property for our component, but how do we pass this `"message"` argument?
+
+### Adding component arguments
+To pass an argument to a component simply create another property in tiled with your desired argument type and name it `nameOfYourComponent.argumentName` such as `someComponent.message`. Set this fields value to your data such as `"Hello World"` and now that argument will be passed to your component in the `args` dictionary!
+![grid](/isometric/assets/components.png)
+
