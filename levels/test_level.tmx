@@ -56,24 +56,11 @@
 </data>
  </layer>
  <objectgroup id="2" name="Object Layer 1">
-  <object id="1" gid="1" x="187.667" y="228.333" width="20" height="24"/>
-  <object id="2" gid="1" x="218.667" y="110.667" width="20" height="24"/>
-  <object id="3" gid="1" x="361" y="232.333" width="20" height="24"/>
-  <object id="4" gid="1" x="322.667" y="78.6667" width="20" height="24"/>
-  <object id="5" gid="1" x="311.667" y="357.667" width="20" height="24"/>
-  <object id="6" gid="1" x="132.333" y="382.333" width="20" height="24"/>
-  <object id="7" gid="1" x="79" y="162.333" width="20" height="24"/>
-  <object id="8" gid="1" x="254" y="427.333" width="20" height="24"/>
-  <object id="9" gid="1" x="406.333" y="413.667" width="20" height="24"/>
-  <object id="10" gid="1" x="362.667" y="266.667" width="20" height="24"/>
-  <object id="11" gid="1" x="238.667" y="205.333" width="20" height="24"/>
-  <object id="12" gid="1" x="220.667" y="367.333" width="20" height="24"/>
-  <object id="13" gid="1" x="92.3333" y="242.333" width="20" height="24"/>
-  <object id="14" gid="1" x="138.333" y="104.333" width="20" height="24"/>
-  <object id="16" gid="1" x="79.6667" y="387" width="20" height="24">
+  <object id="16" gid="1" x="302.333" y="163" width="20" height="24">
    <properties>
-    <property name="component.position" value="src.components.simpleComponentTest"/>
+    <property name="component.position" value="src.components.component_position"/>
     <property name="position.message" value="Hello World!"/>
+    <property name="position.x" value="attribute.position.message"/>
    </properties>
   </object>
  </objectgroup>

@@ -26,19 +26,35 @@
 ## Creating an object
 FIX ME!
 
+### Illegal names
+Components should never be named any of the following names.
+ - self
+ - component
+ - attribute
+
+Naming these names may result in undesired behavior
+
 ### Adding components
 This game uses a entity component system or ECS for short, this means that each entity does not get its own file but rather each entity gets components added to it to control certain behaviors.
 
 To add a property you can select any object you have placed down, go to its properties panel, and add a new property by pressing the blue `+` in the bottom left corner. Name this new property `component_someComponent` and set its type to string. In this new field set its value to something like `path.to.your.component` such as `src.components.someComponent`. Now in python if you add a file at `/src/components/someComponent.py` and create this basic component:
 ```py
-class component:
+from basic_component import template
+
+class component(template):
     def __init__(self, args) -> None:
-        self.message = args["message"]
+        super().__init__(args)
+        # Program your component here.
+        print(self.arguments)
 ```
+
 
 As you can see here we are creating a basic message property for our component, but how do we pass this `"message"` argument?
 
 ### Adding component arguments
 To pass an argument to a component simply create another property in tiled with your desired argument type and name it `nameOfYourComponent.argumentName` such as `someComponent.message`. Set this fields value to your data such as `"Hello World"` and now that argument will be passed to your component in the `args` dictionary!
 ![components](/isometric/assets/components.png)
+
+### Argument references
+The component system also supports attribute referencing. Lets say you need to pass the 
 

@@ -15,7 +15,6 @@ class component_manager:
             raise Exception(f"Component module not found. Source: {path}")
 
         try:
-
             class component(component_module.component):
                 def __init__(self, path: str) -> None:
                     super().__init__(kwargs)
@@ -27,7 +26,10 @@ class component_manager:
                     except AttributeError:
                         self.update = lambda: None
 
-                    mgr_self.lm.log.debug(f"Component {self.name} loaded.")
+                    mgr_self.lm.log.debug(f'Component "{self.name}" loaded.')
+
+                def __repr__(self):
+                    return f"Component({self.name})"
 
         except AttributeError:
             raise Exception(
