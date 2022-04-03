@@ -51,10 +51,12 @@ class component(template):
 
 As you can see here we are creating a basic message property for our component, but how do we pass this `"message"` argument?
 
-### Adding component arguments
+## Adding component arguments
 To pass an argument to a component simply create another property in tiled with your desired argument type and name it `nameOfYourComponent.argumentName` such as `someComponent.message`. Set this fields value to your data such as `"Hello World"` and now that argument will be passed to your component in the `args` dictionary!
 ![components](/isometric/assets/components.png)
 
-### Argument references
-The component system also supports attribute referencing. Lets say you need to pass the 
+### Argument to self references
+The component system also supports attribute referencing. Lets say you need to pass the the x position set by tiled to a component as an argument. You could manually copy each x position in tiled to a argument but that would be tedious. Instead you can use the `attribute` descriptor. To use this simply set your attribute value to, in our example, `attribute.self.x`, and when the object is loaded will be parsed into the real x value of the object.
 
+### Argument to component references
+You can also reference and sync attributes to other component attributes by using this format `attribute.otherComponent.valueName` in attribute fields.
