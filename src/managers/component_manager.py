@@ -15,6 +15,7 @@ class component_manager:
             raise Exception(f"Component module not found. Source: {path}")
 
         try:
+
             class component(component_module.component):
                 def __init__(self, path: str) -> None:
                     super().__init__(kwargs)

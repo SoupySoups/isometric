@@ -23,13 +23,29 @@ class object_manager:
                         "args": {},
                     }
                 elif len(property.split(".", 1)) > 1:
-                    if type(obj.properties[property]) is str and obj.properties[property].startswith("attribute."): # Value is a reference
-                        if obj.properties[property].split(".", 2)[1] == "self": # Reference is to self
-                            components[property.split(".", 1)[0]]["args"][property.split(".", 2)[-1]] = getattr(obj, obj.properties[property].split(".", 2)[-1])
-                        else: # Reference is to another component
-                            components[property.split(".", 1)[0]]["args"][property.split(".", 1)[-1]] = components[obj.properties[property].split(".")[1]]['args'][obj.properties[property].split(".", 2)[-1]]
-                    else: # Value is a literal
-                        components[property.split(".", 1)[0]]["args"][property.split(".", 1)[-1]] = obj.properties[property]
+                    if type(obj.properties[property]) is str and obj.properties[
+                        property
+                    ].startswith(
+                        "attribute."
+                    ):  # Value is a reference
+                        if (
+                            obj.properties[property].split(".", 2)[1] == "self"
+                        ):  # Reference is to self
+                            components[property.split(".", 1)[0]]["args"][
+                                property.split(".", 2)[-1]
+                            ] = getattr(obj, obj.properties[property].split(".", 2)[-1])
+                        else:  # Reference is to another component
+                            components[property.split(".", 1)[0]]["args"][
+                                property.split(".", 1)[-1]
+                            ] = components[obj.properties[property].split(".")[1]][
+                                "args"
+                            ][
+                                obj.properties[property].split(".", 2)[-1]
+                            ]
+                    else:  # Value is a literal
+                        components[property.split(".", 1)[0]]["args"][
+                            property.split(".", 1)[-1]
+                        ] = obj.properties[property]
                 else:
                     raise AttributeError(f"Invalid property: {property}")
 
