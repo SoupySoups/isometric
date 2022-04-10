@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="isometric" renderorder="right-down" width="50" height="50" tilewidth="20" tileheight="10" infinite="0" nextlayerid="3" nextobjectid="17">
- <tileset firstgid="1" source="../assets/textures/ground.png.tsx"/>
+<map version="1.8" tiledversion="1.8.4" orientation="isometric" renderorder="right-down" width="50" height="50" tilewidth="20" tileheight="10" infinite="0" nextlayerid="8" nextobjectid="94">
+ <tileset firstgid="1" source="ground.png.tsx"/>
  <layer id="1" name="Tile Layer 1" width="50" height="50">
   <data encoding="csv">
 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
@@ -58,9 +58,7 @@
  <objectgroup id="2" name="Object Layer 1">
   <object id="16" gid="1" x="302.333" y="163" width="20" height="24">
    <properties>
-    <property name="component.position" value="src.components.component_position"/>
-    <property name="position.message" value="Hello World!"/>
-    <property name="position.x" value="attribute.position.message"/>
+    <property name="component" type="class" propertytype="test"/>
    </properties>
   </object>
  </objectgroup>

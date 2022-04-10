@@ -1,5 +1,4 @@
 import pytmx
-import src.managers.object_manager as object_manager
 from src.utils.data_types import Point
 import src.utils.sorters as sorters
 
@@ -28,7 +27,7 @@ class level:
 
         # Load TMX file
         self.filename = filename
-        self.raw_tmxdata = pytmx.load_pygame(self.filename)
+        self.raw_tmxdata = pytmx.load_pygame(self.filename, custom_property_filename='levels/propertytypes.json')
 
         # Retive map properties
         self.background_color = self.raw_tmxdata.background_color
@@ -46,11 +45,11 @@ class level:
         )
         self.sorted_tiles = sorters.sort_tile_distance(self.tile_layers)
 
-        self.om = object_manager.object_manager(self.cm, self.lm)
-        self.om.load_from_id_dict(self.raw_tmxdata.objects_by_id)
-
-        self.lm.log.info(f"Successfully loaded level: {self.filename} v{self.version}")
+        self.lm.log.info(f"Successfully loaded level: {self.filename}, Tiled version: {self.version}")
 
     def get_image_at(self, point: Point):
         point.check_3d()
         return self.raw_tmxdata.get_tile_image(point.x, point.y, point.z)
+
+    def get_all_objects(self) -> list:
+        return list(self.raw_tmxdata.objects)

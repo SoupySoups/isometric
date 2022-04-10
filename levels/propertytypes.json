@@ -1,0 +1,19 @@
+[
+    {
+        "id": 1,
+        "members": [
+            {
+                "name": "someOtherValue",
+                "type": "string",
+                "value": "blah blah blah"
+            },
+            {
+                "name": "value",
+                "type": "string",
+                "value": "Hello World"
+            }
+        ],
+        "name": "test",
+        "type": "class"
+    }
+]

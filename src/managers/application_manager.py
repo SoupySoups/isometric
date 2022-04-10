@@ -4,6 +4,7 @@ import src.managers.logging_manager as logging_manager
 import src.managers.screen_manager as screen_manager
 import src.managers.data_manager as data_manager
 import src.managers.render_manager as render_manager
+import src.managers.object_manager as object_manager
 import pygame
 
 
@@ -21,6 +22,7 @@ class application_manager:
         self.sm = screen_manager.screen_manager(self.cm, self.lm)
         self.dm = data_manager.data_manager(self.cm, self.lm)
         self.rm = render_manager.render_manager(self.cm, self.lm)
+        self.om = object_manager.object_manager(self.cm, self.lm)
 
         self.lm.log.info("Application manager initialized.")
 

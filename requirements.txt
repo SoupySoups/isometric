@@ -1,1 +1,2 @@
 pygame
+git+ssh://git@github.com/SoupySoups/pytmx.git

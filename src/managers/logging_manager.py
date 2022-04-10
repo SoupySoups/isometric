@@ -19,3 +19,4 @@ class logging_manager:
     def switch_log_level(self, log_level):
         self.log_level = log_level
         self.log.setLevel(getattr(logging, str(self.log_level).upper()))
+        self.log.info("Log level switched to %s.", log_level)
