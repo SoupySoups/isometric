@@ -16,7 +16,9 @@ class render_manager:
             if tile_image:
                 self.render_item(surface, tile_image, isometric(tile))
 
-    def render_item(self, target: pygame.Surface, source: pygame.Surface, position: Point):
+    def render_item(
+        self, target: pygame.Surface, source: pygame.Surface, position: Point
+    ):
         position.check_2d()
         position = position.as_tuple()
         position = (position[0] - source.get_width() // 2, position[1])

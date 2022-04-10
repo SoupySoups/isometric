@@ -27,7 +27,9 @@ class level:
 
         # Load TMX file
         self.filename = filename
-        self.raw_tmxdata = pytmx.load_pygame(self.filename, custom_property_filename='levels/propertytypes.json')
+        self.raw_tmxdata = pytmx.load_pygame(
+            self.filename, custom_property_filename="levels/propertytypes.json"
+        )
 
         # Retive map properties
         self.background_color = self.raw_tmxdata.background_color
@@ -45,7 +47,9 @@ class level:
         )
         self.sorted_tiles = sorters.sort_tile_distance(self.tile_layers)
 
-        self.lm.log.info(f"Successfully loaded level: {self.filename}, Tiled version: {self.version}")
+        self.lm.log.info(
+            f"Successfully loaded level: {self.filename}, Tiled version: {self.version}"
+        )
 
     def get_image_at(self, point: Point):
         point.check_3d()
