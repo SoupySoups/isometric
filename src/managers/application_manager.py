@@ -5,6 +5,7 @@ import src.managers.screen_manager as screen_manager
 import src.managers.data_manager as data_manager
 import src.managers.render_manager as render_manager
 import src.managers.object_manager as object_manager
+import src.managers.event_manager as event_manager
 import pygame
 
 
@@ -23,28 +24,26 @@ class application_manager:
         self.dm = data_manager.data_manager(self.cm, self.lm)
         self.rm = render_manager.render_manager(self.cm, self.lm)
         self.om = object_manager.object_manager(self.cm, self.lm)
+        self.em = event_manager.event_manager(self.cm, self.lm)
+
+        self.sm.create_callback("game_frame", self.game_frame)
 
         self.lm.log.info("Application manager initialized.")
 
         self.events = []
 
+    def game_frame(self, screen: pygame.Surface) -> None:
+        if not self.dm.current_level:
+            raise AttributeError("No level currently loaded.")
+
+        screen.fill(self.dm.current_level.background_color)  # Clear screen.
+
+        # events = self.em.get_events()
+        self.em.get_events()
+
+        self.rm.render(self.dm.current_level, screen)  # Render.
+
     def run(self) -> None:
         while True:
-            if not self.dm.current_level:
-                raise AttributeError("No level currently loaded.")
-
-            self.sm.current.surface.fill(
-                self.dm.current_level.background_color
-                if self.dm.current_level.background_color is not None
-                else (0, 0, 0)
-            )  # Clear screen.
-
-            self.events = pygame.event.get()
-            for event in self.events:
-                if event.type == pygame.QUIT:  # Quit.
-                    pygame.quit()
-                    quit()
-
-            self.rm.render(self.dm.current_level, self.sm.current.surface)  # Render.
-
-            self.wm.update(self.sm.get_current().surface)  # Update screen.
+            self.sm.run_callback()
+            self.wm.update(self.sm.screen)  # Update screen.

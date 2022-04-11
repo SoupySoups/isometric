@@ -1,13 +1,13 @@
 from src.utils.quiet_print import QuietPrint
+from src.managers.manager import manager
 
 with QuietPrint():
     import pygame
 
 
-class window_manager:
-    def __init__(self, config_manager, logging_manager):
-        self.lm = logging_manager
-        self.cm = config_manager
+class window_manager(manager):
+    def __init__(self, config_manager, log_manager):
+        super().__init__(config_manager, log_manager)
 
         self.window_name = self.cm.get_str_setting("Window", "window_name")
         self.window_icon = pygame.image.load(

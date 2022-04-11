@@ -1,12 +1,12 @@
 import pytmx
 from src.utils.data_types import Point
 import src.utils.sorters as sorters
+from src.managers.manager import manager
 
 
-class data_manager:
+class data_manager(manager):
     def __init__(self, config_manager, log_manager):
-        self.cm = config_manager
-        self.lm = log_manager
+        super().__init__(config_manager, log_manager)
 
         self.current_level = None
 
@@ -33,6 +33,8 @@ class level:
 
         # Retive map properties
         self.background_color = self.raw_tmxdata.background_color
+        if self.background_color is None:
+            self.background_color = (0, 0, 0)
 
         self.map_width = self.raw_tmxdata.width
         self.map_height = self.raw_tmxdata.height
@@ -45,7 +47,6 @@ class level:
         self.tile_layers, self.non_tile_layers = sorters.sort_by_instance(
             self.layers, pytmx.TiledTileLayer
         )
-        self.sorted_tiles = sorters.sort_tile_distance(self.tile_layers)
 
         self.lm.log.info(
             f"Successfully loaded level: {self.filename}, Tiled version: {self.version}"
@@ -55,5 +56,5 @@ class level:
         point.check_3d()
         return self.raw_tmxdata.get_tile_image(point.x, point.y, point.z)
 
-    def get_all_objects(self) -> list:
-        return list(self.raw_tmxdata.objects)
+    def get_object_layers(self) -> list:
+        return list(self.raw_tmxdata.objectgroups)

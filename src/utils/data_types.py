@@ -3,9 +3,11 @@ class Point:
         if z is not None:
             self.x, self.y, self.z = Point3D(x, y, z).as_tuple()
             self.type = Point3D
+            self.two_d = False
         else:
             self.x, self.y = Point2D(x, y).as_tuple()
             self.type = Point2D
+            self.two_d = True
 
     def __str__(self) -> str:
         return f'Point at {self.x}, {self.y}{f", {self.z}" if not self.two_d else ""}'

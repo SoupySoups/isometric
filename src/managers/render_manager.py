@@ -1,20 +1,32 @@
 from src.utils.isometric_calculations import isometric
+from src.managers.object_manager import add_world_point_to_object_layer_objects
 from src.utils.data_types import Point
+import src.utils.sorters as sorters
+from src.managers.manager import manager
+import pytmx
 import pygame
 
 
-class render_manager:
+class render_manager(manager):
     def __init__(self, config_manager, log_manager):
-        self.cm = config_manager
-        self.lm = log_manager
+        super().__init__(config_manager, log_manager)
 
         self.lm.log.info("Render manager initialized.")
 
     def render(self, level, surface):
-        for tile in level.sorted_tiles:
-            tile_image = level.get_image_at(tile)
-            if tile_image:
-                self.render_item(surface, tile_image, isometric(tile))
+        sorted_tiles = sorters.sort_tile_distance(
+            level.tile_layers,
+            insert=add_world_point_to_object_layer_objects(level.get_object_layers()),
+        )
+        for element in sorted_tiles:
+            position = element["position"]
+
+            if isinstance(element["object"], pytmx.TiledObject):
+                self.render_item(surface, element["object"].image, isometric(position))
+            else:
+                tile_image = level.get_image_at(position)
+                if tile_image:
+                    self.render_item(surface, tile_image, isometric(position))
 
     def render_item(
         self, target: pygame.Surface, source: pygame.Surface, position: Point

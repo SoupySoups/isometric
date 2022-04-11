@@ -1,4 +1,5 @@
 import src.utils.data_types as data_types
+import math
 
 
 def sort_by_instance(to_sort: list, instance: object) -> int:
@@ -31,11 +32,55 @@ def quicksort_on_score(array: dict, key="score"):
     return quicksort_on_score(low) + same + quicksort_on_score(high)
 
 
-def sort_tile_distance(tile_layers):
-    scores = []
+def sort_tile_distance(tile_layers, insert=[]):
+    layers = []
+    belows = []
+    aboves = []
     for z, layer in enumerate(tile_layers):
+        scores = []
         for y, row in enumerate(layer.data):
-            for x in range(len(row)):
-                scores.append({"score": x + y + z, "pos": data_types.Point(x, y, z)})
+            for x, tile in enumerate(row):
+                scores.append(
+                    {
+                        "score": x + y,
+                        "data": {"position": data_types.Point(x, y, z), "object": tile},
+                    }
+                )
 
-    return [d["pos"] for d in quicksort_on_score(scores)]
+        for obj in insert:
+            obj_3d = obj.threeD_point
+            obj_z = math.floor(obj_3d.z)
+            if obj_z == z:
+                scores.append(
+                    {
+                        "score": obj_3d.x + obj_3d.y,
+                        "data": {
+                            "position": data_types.Point(obj_3d.x, obj_3d.y, obj_3d.z),
+                            "object": obj,
+                        },
+                    }
+                )
+            elif obj_z < 0:
+                belows.append(
+                    {
+                        "score": obj_3d.x + obj_3d.y,
+                        "data": {
+                            "position": data_types.Point(obj_3d.x, obj_3d.y, obj_3d.z),
+                            "object": obj,
+                        },
+                    }
+                )
+            elif obj_z > len(tile_layers):
+                aboves.append(
+                    {
+                        "score": obj_3d.x + obj_3d.y,
+                        "data": {
+                            "position": data_types.Point(obj_3d.x, obj_3d.y, obj_3d.z),
+                            "object": obj,
+                        },
+                    }
+                )
+
+        layers += [d["data"] for d in quicksort_on_score(scores)]
+
+    return belows + layers + aboves
