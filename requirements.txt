@@ -1,2 +1,2 @@
 pygame
-git+ssh://git@github.com/SoupySoups/pytmx.git
+git+https://github.com/SoupySoups/pytmx.git#egg=pytmx
