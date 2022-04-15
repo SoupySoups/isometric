@@ -34,10 +34,15 @@ def quicksort_on_score(array: dict, key="score"):
 
 def sort_tile_distance(tile_layers, insert=[]):
     layers = []
-    belows = []
+    behinds = []
     aboves = []
+    unused = insert
+    # Sort inbounds objects
     for z, layer in enumerate(tile_layers):
-        scores = []
+        scores = (
+            []
+        )  # Will store each object with a score representing distance from camera
+        # Calculate tile scores
         for y, row in enumerate(layer.data):
             for x, tile in enumerate(row):
                 scores.append(
@@ -47,10 +52,10 @@ def sort_tile_distance(tile_layers, insert=[]):
                     }
                 )
 
+        # Calculate object scores if they are within map bounds
         for obj in insert:
             obj_3d = obj.threeD_point
-            obj_z = math.floor(obj_3d.z)
-            if obj_z == z:
+            if math.floor(obj_3d.z) == z:
                 scores.append(
                     {
                         "score": obj_3d.x + obj_3d.y,
@@ -60,27 +65,40 @@ def sort_tile_distance(tile_layers, insert=[]):
                         },
                     }
                 )
-            elif obj_z < 0:
-                belows.append(
-                    {
-                        "score": obj_3d.x + obj_3d.y,
-                        "data": {
-                            "position": data_types.Point(obj_3d.x, obj_3d.y, obj_3d.z),
-                            "object": obj,
-                        },
-                    }
-                )
-            elif obj_z > len(tile_layers):
-                aboves.append(
-                    {
-                        "score": obj_3d.x + obj_3d.y,
-                        "data": {
-                            "position": data_types.Point(obj_3d.x, obj_3d.y, obj_3d.z),
-                            "object": obj,
-                        },
-                    }
-                )
+                unused.remove(obj)
 
+        # Sort scores
         layers += [d["data"] for d in quicksort_on_score(scores)]
 
-    return belows + layers + aboves
+    # Sort out of bounds objects
+    for obj in unused:
+        obj_3d = obj.threeD_point
+        if obj_3d.x < 0 or obj_3d.y < 0 or obj_3d.z < 0:
+            behinds.append(
+                {
+                    "score": obj_3d.x + obj_3d.y,
+                    "data": {
+                        "position": data_types.Point(obj_3d.x, obj_3d.y, obj_3d.z),
+                        "object": obj,
+                    },
+                }
+            )
+        else:
+            aboves.append(
+                {
+                    "score": obj_3d.x + obj_3d.y,
+                    "data": {
+                        "position": data_types.Point(obj_3d.x, obj_3d.y, obj_3d.z),
+                        "object": obj,
+                    },
+                }
+            )
+
+    # Combine out of bounds objects with in bounds objects
+    layers = (
+        [d["data"] for d in quicksort_on_score(behinds)]
+        + layers
+        + [d["data"] for d in quicksort_on_score(aboves)]
+    )
+
+    return layers

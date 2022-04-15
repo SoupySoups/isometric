@@ -1,9 +1,9 @@
 from typing import Any
 import pygame
-from src.managers.manager import manager
+from src.utils.templates.class_starter import starter
 
 
-class screen_manager(manager):
+class screen_manager(starter):
     def __init__(self, config_manager, log_manager) -> None:
         super().__init__(config_manager, log_manager)
 

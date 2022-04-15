@@ -17,21 +17,11 @@
  </layer>
  <objectgroup id="2" name="Object Layer 1" offsetx="0" offsety="-14">
   <object id="94" gid="1" x="39.4375" y="64.3125" width="20" height="24"/>
-  <object id="95" gid="1" x="52.6875" y="27.8125" width="20" height="24"/>
+  <object id="95" gid="1" x="52.6875" y="27.8125" width="20" height="24">
+   <properties>
+    <property name="e" type="class" propertytype="test"/>
+   </properties>
+  </object>
   <object id="96" gid="1" x="91.0625" y="86.6875" width="20" height="24"/>
  </objectgroup>
- <layer id="8" name="Tile Layer 2" width="10" height="10" offsetx="0" offsety="-14">
-  <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0
-</data>
- </layer>
 </map>

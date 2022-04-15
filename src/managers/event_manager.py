@@ -1,8 +1,8 @@
-from src.managers.manager import manager
+from src.utils.templates.class_starter import starter
 import pygame
 
 
-class event_manager(manager):
+class event_manager(starter):
     def __init__(self, config_manager, log_manager):
         super().__init__(config_manager, log_manager)
 

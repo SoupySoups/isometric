@@ -3,7 +3,7 @@ import src.managers.configuration_manager as configuration_manager
 import src.managers.logging_manager as logging_manager
 import src.managers.screen_manager as screen_manager
 import src.managers.data_manager as data_manager
-import src.managers.render_manager as render_manager
+import src.elements.camera as camera
 import src.managers.object_manager as object_manager
 import src.managers.event_manager as event_manager
 import pygame
@@ -22,9 +22,9 @@ class application_manager:
         self.wm = window_manager.window_manager(self.cm, self.lm)
         self.sm = screen_manager.screen_manager(self.cm, self.lm)
         self.dm = data_manager.data_manager(self.cm, self.lm)
-        self.rm = render_manager.render_manager(self.cm, self.lm)
         self.om = object_manager.object_manager(self.cm, self.lm)
         self.em = event_manager.event_manager(self.cm, self.lm)
+        self.camera = camera.camera(self.cm, self.lm)
 
         self.sm.create_callback("game_frame", self.game_frame)
 
@@ -41,7 +41,11 @@ class application_manager:
         # events = self.em.get_events()
         self.em.get_events()
 
-        self.rm.render(self.dm.current_level, screen)  # Render.
+        x, y = pygame.mouse.get_pos()
+        self.camera.position = ((x - 800) // 3, (y - 450) // 3)
+
+        self.camera.render(self.dm.current_level)  # Render.
+        screen.blit(self.camera.surface, (0, 0))  # Blit to screen.
 
     def run(self) -> None:
         while True:

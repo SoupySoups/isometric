@@ -1,10 +1,10 @@
 import pytmx
 from src.utils.data_types import Point
 import src.utils.sorters as sorters
-from src.managers.manager import manager
+from src.utils.templates.class_starter import starter
 
 
-class data_manager(manager):
+class data_manager(starter):
     def __init__(self, config_manager, log_manager):
         super().__init__(config_manager, log_manager)
 
@@ -44,7 +44,7 @@ class level:
         self.version = self.raw_tmxdata.version
 
         self.layers = self.raw_tmxdata.layers
-        self.tile_layers, self.non_tile_layers = sorters.sort_by_instance(
+        self.tile_layers, _ = sorters.sort_by_instance(
             self.layers, pytmx.TiledTileLayer
         )
 
@@ -57,4 +57,5 @@ class level:
         return self.raw_tmxdata.get_tile_image(point.x, point.y, point.z)
 
     def get_object_layers(self) -> list:
+
         return list(self.raw_tmxdata.objectgroups)

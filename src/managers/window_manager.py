@@ -1,11 +1,11 @@
 from src.utils.quiet_print import QuietPrint
-from src.managers.manager import manager
+from src.utils.templates.class_starter import starter
 
 with QuietPrint():
     import pygame
 
 
-class window_manager(manager):
+class window_manager(starter):
     def __init__(self, config_manager, log_manager):
         super().__init__(config_manager, log_manager)
 
