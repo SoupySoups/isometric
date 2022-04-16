@@ -8,16 +8,15 @@ class object_manager(starter):
 
         self.lm.log.info("Object manager initialized.")
 
+    def prepare(self, object_groups: list) -> list:
+        out = []
+        for group in object_groups:
+            for object in group:
+                object.threeD_point = Point(
+                    (object.x - group.offsetx) / 10 - 1,
+                    (object.y - group.offsety) / 10,
+                    group.offsety * -1 / 14,
+                )
+                out.append(object)
 
-def add_world_point_to_object_layer_objects(object_groups: list) -> list:
-    out = []
-    for group in object_groups:
-        for object in group:
-            object.threeD_point = Point(
-                (object.x - group.offsetx) / 10 - 1,
-                (object.y - group.offsety) / 10,
-                group.offsety * -1 / 14,
-            )
-            out.append(object)
-
-    return out
+        return out

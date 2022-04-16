@@ -19,7 +19,11 @@
   <object id="94" gid="1" x="39.4375" y="64.3125" width="20" height="24"/>
   <object id="95" gid="1" x="52.6875" y="27.8125" width="20" height="24">
    <properties>
-    <property name="e" type="class" propertytype="test"/>
+    <property name="render" type="class" propertytype="render">
+     <properties>
+      <property name="do_render" type="bool" value="true"/>
+     </properties>
+    </property>
    </properties>
   </object>
   <object id="96" gid="1" x="91.0625" y="86.6875" width="20" height="24"/>

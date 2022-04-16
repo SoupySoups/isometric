@@ -1,5 +1,4 @@
 from src.utils.isometric_calculations import isometric
-from src.managers.object_manager import add_world_point_to_object_layer_objects
 from src.utils.data_types import Point
 import src.utils.sorters as sorters
 from src.utils.templates.class_starter import starter
@@ -21,17 +20,24 @@ class camera(starter):
 
         self.surface = pygame.surface.Surface(size=self.size)
 
+        self.object_queue = []
+
         self.position = (0, 0)
 
         self.lm.log.info("Camera initialized.")
+
+    def component(self, obj, fields):
+        if fields.do_render:
+            self.object_queue.append(obj)
 
     def render(self, level):
         self.surface.fill(level.background_color)
 
         sorted_tiles = sorters.sort_tile_distance(
             level.tile_layers,
-            insert=add_world_point_to_object_layer_objects(level.get_object_layers()),
+            insert=self.object_queue,
         )
+        self.object_queue = []
         for element in sorted_tiles:
             position = element["position"]
 

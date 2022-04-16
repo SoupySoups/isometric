@@ -3,17 +3,12 @@
         "id": 1,
         "members": [
             {
-                "name": "someOtherValue",
-                "type": "string",
-                "value": "blah blah blah"
-            },
-            {
-                "name": "value",
-                "type": "string",
-                "value": "Hello World"
+                "name": "do_render",
+                "type": "bool",
+                "value": true
             }
         ],
-        "name": "test",
+        "name": "render",
         "type": "class"
     }
 ]
