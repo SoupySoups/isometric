@@ -1,6 +1,6 @@
 from typing import Any
 import pygame
-from utils.templates.manager_starter import starter
+from src.utils.templates.manager_starter import starter
 import src.managers.event_manager as event_manager
 
 

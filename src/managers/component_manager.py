@@ -1,4 +1,4 @@
-from utils.templates.manager_starter import starter
+from src.utils.templates.manager_starter import starter
 
 
 class component_manager(starter):

@@ -1,7 +1,7 @@
 from src.utils.isometric_calculations import isometric
 from src.utils.data_types import Point
 import src.utils.sorters as sorters
-from utils.templates.manager_starter import starter
+from src.utils.templates.manager_starter import starter
 import pytmx
 import pygame
 

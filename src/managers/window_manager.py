@@ -1,5 +1,5 @@
 from src.utils.quiet_print import QuietPrint
-from utils.templates.manager_starter import starter
+from src.utils.templates.manager_starter import starter
 
 with QuietPrint():
     import pygame

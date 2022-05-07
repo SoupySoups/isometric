@@ -1,5 +1,5 @@
 from src.utils.data_types import Point
-from utils.templates.manager_starter import starter
+from src.utils.templates.manager_starter import starter
 
 
 class object_manager(starter):
