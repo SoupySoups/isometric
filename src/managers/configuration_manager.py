@@ -7,7 +7,7 @@ class configuration_manager:
         self.filename = filename
         self.load(self.filename)
 
-        self.lm.log.info("Configuration manager initialized.")
+        self.lm.log.debug("Configuration manager initialized.")
 
     def load(self, filename: str) -> configparser.ConfigParser:
         self.lm.log.info(f"Loaded configuration file: {filename}")

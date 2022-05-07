@@ -21,18 +21,30 @@
  2.  Start by opening and going to File > New > New Tileset
  3.  Name your tileset a **meaningful** name and set your source to your previously created image.
  4.  Hit save as and save in a spot you can remember as a `.tsx` file.
- 5.  Finish this blah blah blah FIX ME!
 
-## Creating an object
-FIX ME!
+### Creating a new map
+ 1. Go to File > New > New Map
+ 2. In the options panel that appears, make sure the following properties are set appropriately:
+ - `Orientation` is set to `Isometric`
+ - `Tile layer format` is set to `CSV`
+ - `Tile render order` is set to `Right Down`
+ - Tile size `Width` is set to `20`
+ - Tile size `Height` is set to `10`
+ - `Fixed` box is `checked`
+ 3. Under Map size set your desired levels `Width` and `Height` and hit `OK`.
 
-### Illegal names
-Components should never be named any of the following names.
- - self
+### Legal names
+Components should only be named any of the following names.
+ - logging
+ - configuration
+ - window
+ - screen
+ - level
+ - object
  - component
- - attribute
+ - render
 
-Naming these names may result in undesired behavior
+Naming different names may result in undesired behavior
 
 ### Adding components
 This game uses a entity component system or ECS for short, this means that each entity does not get its own file but rather each entity gets components added to it to control certain behaviors.

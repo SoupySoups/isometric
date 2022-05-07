@@ -1,5 +1,5 @@
 from src.utils.quiet_print import QuietPrint
-from src.utils.templates.class_starter import starter
+from utils.templates.manager_starter import starter
 
 with QuietPrint():
     import pygame
@@ -14,8 +14,13 @@ class window_manager(starter):
             self.cm.get_str_setting("Window", "window_icon")
         )
 
-        self.lm.log.info(
-            "Successfully initialized %s pygame modules, %s failed." % (pygame.init())
+        pygame_init_stats = pygame.init()
+        if pygame_init_stats[1] != 0:
+            self.lm.log.fatal(
+                f"Pygame failed to initialize {pygame_init_stats[1]} module(s)."
+            )
+        self.lm.log.debug(
+            f"Successfully initialized {pygame_init_stats[0]} pygame modules, {pygame_init_stats[1]} failed."
         )  # Initialize pygame modules
 
         self.fps = 0

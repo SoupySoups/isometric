@@ -1,7 +1,7 @@
 from src.utils.isometric_calculations import isometric
 from src.utils.data_types import Point
 import src.utils.sorters as sorters
-from src.utils.templates.class_starter import starter
+from utils.templates.manager_starter import starter
 import pytmx
 import pygame
 
@@ -24,15 +24,13 @@ class camera(starter):
 
         self.position = (0, 0)
 
-        self.lm.log.info("Camera initialized.")
+        self.lm.log.debug("Camera initialized.")
 
     def component(self, obj, fields):
         if fields.do_render:
             self.object_queue.append(obj)
 
     def render(self, level):
-        self.surface.fill(level.background_color)
-
         sorted_tiles = sorters.sort_tile_distance(
             level.tile_layers,
             insert=self.object_queue,

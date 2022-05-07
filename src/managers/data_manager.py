@@ -1,7 +1,7 @@
 import pytmx
 from src.utils.data_types import Point
 import src.utils.sorters as sorters
-from src.utils.templates.class_starter import starter
+from utils.templates.manager_starter import starter
 
 
 class data_manager(starter):
@@ -10,7 +10,7 @@ class data_manager(starter):
 
         self.current_level = None
 
-        self.lm.log.info("Data manager initialized.")
+        self.lm.log.debug("Data manager initialized.")
 
     def load_data(self, filename):
         self.lm.log.info(f"Loading level: {filename}")

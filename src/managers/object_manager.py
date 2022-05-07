@@ -1,14 +1,14 @@
 from src.utils.data_types import Point
-from src.utils.templates.class_starter import starter
+from utils.templates.manager_starter import starter
 
 
 class object_manager(starter):
     def __init__(self, config_manager, log_manager):
         super().__init__(config_manager, log_manager)
 
-        self.lm.log.info("Object manager initialized.")
+        self.lm.log.debug("Object manager initialized.")
 
-    def prepare(self, object_groups: list) -> list:
+    def convert_tiled_pos_to_game_world(self, object_groups: list) -> list:
         out = []
         for group in object_groups:
             for object in group:
