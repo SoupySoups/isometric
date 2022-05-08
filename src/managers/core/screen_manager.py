@@ -1,7 +1,7 @@
 from typing import Any
 import pygame
 from src.utils.templates.manager_starter import starter
-import src.managers.event_manager as event_manager
+import src.managers.core.event_manager as event_manager
 
 
 class screen_manager(starter):
@@ -12,8 +12,8 @@ class screen_manager(starter):
 
         self.screen = self.surface = pygame.Surface(
             (
-                self.cm.get_int_setting("Window", "default_width") / 3,
-                self.cm.get_int_setting("Window", "default_height") / 3,
+                self.cm.get_int("Window", "default_width") / 3,
+                self.cm.get_int("Window", "default_height") / 3,
             )
         )
 
@@ -23,10 +23,12 @@ class screen_manager(starter):
 
         self.lm.log.debug("Screen manager initialized.")
 
-    def create_screen_handler(self, name: str, callback: callable) -> None:
+    def register_screen_handler(self, name, func: str) -> callable:
+        """Registers a screen handler"""
         if len(self.callbacks.keys()) == 0:
             self.current_state = name
-        self.callbacks[name] = callback
+        self.callbacks[name] = func
+        return func
 
     def set_screen(self, name: str) -> None:
         if name in self.callbacks.keys():
@@ -37,6 +39,4 @@ class screen_manager(starter):
             )
 
     def run_screen(self) -> Any:
-        return self.callbacks[self.current_state](
-            self.screen, events=self.em.get_events()
-        )
+        return self.callbacks[self.current_state](self.screen, event_manager=self.em)

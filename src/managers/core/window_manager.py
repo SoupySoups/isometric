@@ -9,10 +9,8 @@ class window_manager(starter):
     def __init__(self, config_manager, log_manager):
         super().__init__(config_manager, log_manager)
 
-        self.window_name = self.cm.get_str_setting("Window", "window_name")
-        self.window_icon = pygame.image.load(
-            self.cm.get_str_setting("Window", "window_icon")
-        )
+        self.window_name = self.cm.get_str("Window", "window_name")
+        self.window_icon = pygame.image.load(self.cm.get_str("Window", "window_icon"))
 
         pygame_init_stats = pygame.init()
         if pygame_init_stats[1] != 0:
@@ -24,14 +22,14 @@ class window_manager(starter):
         )  # Initialize pygame modules
 
         self.fps = 0
-        self.max_fps = self.cm.get_int_setting(
+        self.max_fps = self.cm.get_int(
             "Window", "maximum_fps"
         )  # Get maximum FPS from configuration
 
         # Create windows and surfaces
         self.size = (
-            self.cm.get_int_setting("Window", "default_width"),
-            self.cm.get_int_setting("Window", "default_height"),
+            self.cm.get_int("Window", "default_width"),
+            self.cm.get_int("Window", "default_height"),
         )  # Get default window size from configuration
 
         self.lm.log.info(
@@ -43,9 +41,9 @@ class window_manager(starter):
         # Set window properties based on configuration
         self.window_flags = 0
         self.window_flags_list = []
-        if self.cm.get_bool_setting("Window", "resizeable"):
+        if self.cm.get_bool("Window", "resizeable"):
             self.window_flags_list.append(pygame.RESIZABLE | pygame.SCALED)
-        if self.cm.get_bool_setting("Window", "borderless"):
+        if self.cm.get_bool("Window", "borderless"):
             self.window_flags_list.append(pygame.NOFRAME)
 
         self.calculateFlags()  # Calculate window flags

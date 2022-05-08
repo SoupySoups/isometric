@@ -14,8 +14,8 @@ class camera(starter):
             self.size = size
         else:
             self.size = (
-                self.cm.get_int_setting("Window", "default_width") / 3,
-                self.cm.get_int_setting("Window", "default_height") / 3,
+                self.cm.get_int("Window", "default_width") / 3,
+                self.cm.get_int("Window", "default_height") / 3,
             )
 
         self.surface = pygame.surface.Surface(size=self.size)

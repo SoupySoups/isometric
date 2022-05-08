@@ -21,11 +21,11 @@ class configuration_manager:
         self.load(self.filename)
         return self.raw_config
 
-    def get_str_setting(self, section: str, option: str) -> str:
+    def get_str(self, section: str, option: str) -> str:
         return self.raw_config.get(section, option)
 
-    def get_int_setting(self, section: str, option: str) -> int:
+    def get_int(self, section: str, option: str) -> int:
         return self.raw_config.getint(section, option)
 
-    def get_bool_setting(self, section: str, option: str) -> bool:
+    def get_bool(self, section: str, option: str) -> bool:
         return self.raw_config.getboolean(section, option)

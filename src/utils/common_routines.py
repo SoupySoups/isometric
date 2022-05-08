@@ -6,6 +6,6 @@ def quit(logger: logging.Logger = None) -> None:
     import pygame
 
     if logger is not None:
-        logger.log.info("Quitting.")
+        logger.info("Quitting.")
     pygame.quit()
     exit()
