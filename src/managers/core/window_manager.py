@@ -1,38 +1,37 @@
 from src.utils.quiet_print import QuietPrint
-from src.utils.templates.manager_starter import starter
+from src.managers.core.logging_manager import logging_manager
+from src.managers.core.configuration_manager import configuration_manager
 
 with QuietPrint():
     import pygame
 
 
-class window_manager(starter):
-    def __init__(self, config_manager, log_manager):
-        super().__init__(config_manager, log_manager)
-
-        self.window_name = self.cm.get_str("Window", "window_name")
-        self.window_icon = pygame.image.load(self.cm.get_str("Window", "window_icon"))
+class window_manager():
+    def __init__(self):
+        self.window_name = configuration_manager().get_str("Window", "window_name")
+        self.window_icon = pygame.image.load(configuration_manager().get_str("Window", "window_icon"))
 
         pygame_init_stats = pygame.init()
         if pygame_init_stats[1] != 0:
-            self.lm.log.fatal(
+            logging_manager().log.fatal(
                 f"Pygame failed to initialize {pygame_init_stats[1]} module(s)."
             )
-        self.lm.log.debug(
+        logging_manager().log.debug(
             f"Successfully initialized {pygame_init_stats[0]} pygame modules, {pygame_init_stats[1]} failed."
         )  # Initialize pygame modules
 
         self.fps = 0
-        self.max_fps = self.cm.get_int(
+        self.max_fps = configuration_manager().get_int(
             "Window", "maximum_fps"
         )  # Get maximum FPS from configuration
 
         # Create windows and surfaces
         self.size = (
-            self.cm.get_int("Window", "default_width"),
-            self.cm.get_int("Window", "default_height"),
+            configuration_manager().get_int("Window", "default_width"),
+            configuration_manager().get_int("Window", "default_height"),
         )  # Get default window size from configuration
 
-        self.lm.log.info(
+        logging_manager().log.info(
             f'Creating window "{self.window_name}" with size: {self.size[0]}x{self.size[1]}'
         )
         pygame.display.set_caption(self.window_name)  # Set window name
@@ -41,9 +40,9 @@ class window_manager(starter):
         # Set window properties based on configuration
         self.window_flags = 0
         self.window_flags_list = []
-        if self.cm.get_bool("Window", "resizeable"):
+        if configuration_manager().get_bool("Window", "resizeable"):
             self.window_flags_list.append(pygame.RESIZABLE | pygame.SCALED)
-        if self.cm.get_bool("Window", "borderless"):
+        if configuration_manager().get_bool("Window", "borderless"):
             self.window_flags_list.append(pygame.NOFRAME)
 
         self.calculateFlags()  # Calculate window flags

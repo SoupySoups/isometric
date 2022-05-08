@@ -1,11 +1,7 @@
-import logging
-
-
-def quit(logger: logging.Logger = None) -> None:
+def quit() -> None:
     """Quits the application."""
     import pygame
-
-    if logger is not None:
-        logger.info("Quitting.")
+    from src.managers.core.logging_manager import logging_manager
+    logging_manager().log.info("Quitting.")
     pygame.quit()
     exit()

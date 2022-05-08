@@ -5,7 +5,7 @@ def main():
     # Set up the application manager
     am = application_manager.application_manager()
 
-    am.dm.load_data("levels/test_level.tmx")
+    am.load_level("levels/test_level.tmx")
     am.run()
 
 

@@ -1,26 +1,21 @@
-from src.utils.templates.manager_starter import starter
+from src.managers.core.logging_manager import logging_manager
 from src.utils.common_routines import quit
 import pygame
 
 
-class event_manager(starter):
-    def __init__(self, config_manager, log_manager):
-        super().__init__(config_manager, log_manager)
-
+class event_manager:
+    def __init__(self):
         self.callbacks = {}
 
-        self.lm.log.debug("Event manager initialized.")
+        logging_manager().log.debug("Event manager initialized.")
 
     def get_events(self):
         events = pygame.event.get()
         unused_events = []
         for event in events:
             if event.type == pygame.QUIT:  # Quit.
-                quit(self.lm)
+                quit()
             else:
-                for handler in self.callbacks.keys():
-                    if event.type == handler:
-                        self.callbacks[handler](event)
                 unused_events.append(event)
 
         return unused_events

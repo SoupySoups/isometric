@@ -1,21 +1,20 @@
 from src.utils.isometric_calculations import isometric
 from src.utils.data_types import Point
 import src.utils.sorters as sorters
-from src.utils.templates.manager_starter import starter
+from src.managers.core.logging_manager import logging_manager
+from src.managers.core.configuration_manager import configuration_manager
 import pytmx
 import pygame
 
 
-class camera(starter):
-    def __init__(self, config_manager, log_manager, size=None):
-        super().__init__(config_manager, log_manager)
-
+class camera:
+    def __init__(self, size=None):
         if size:
             self.size = size
         else:
             self.size = (
-                self.cm.get_int("Window", "default_width") / 3,
-                self.cm.get_int("Window", "default_height") / 3,
+                configuration_manager().get_int("Window", "default_width") / 3,
+                configuration_manager().get_int("Window", "default_height") / 3,
             )
 
         self.surface = pygame.surface.Surface(size=self.size)
@@ -24,7 +23,7 @@ class camera(starter):
 
         self.position = (0, 0)
 
-        self.lm.log.debug("Camera initialized.")
+        logging_manager().log.debug("Camera initialized.")
 
     def component(self, obj, fields):
         if fields.do_render:

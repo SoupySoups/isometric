@@ -1,12 +1,12 @@
 from src.utils.data_types import Point
-from src.utils.templates.manager_starter import starter
+from src.managers.core.logging_manager import logging_manager
 
 
-class object_manager(starter):
-    def __init__(self, config_manager, log_manager):
-        super().__init__(config_manager, log_manager)
+class object_manager:
+    def __init__(self):
+        self.objects = []
 
-        self.lm.log.debug("Object manager initialized.")
+        logging_manager().log.debug("Object manager initialized.")
 
     def convert_tiled_pos_to_game_world(self, object_groups: list) -> list:
         out = []
@@ -20,3 +20,6 @@ class object_manager(starter):
                 out.append(object)
 
         return out
+
+    def load_objects(self, object_layers: list) -> list:
+        self.objects = self.convert_tiled_pos_to_game_world(object_layers)

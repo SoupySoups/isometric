@@ -1,19 +1,19 @@
 from typing import Any
 import pygame
-from src.utils.templates.manager_starter import starter
+from src.managers.core.logging_manager import logging_manager
 import src.managers.core.event_manager as event_manager
+from src.managers.core.configuration_manager import configuration_manager
 
 
-class screen_manager(starter):
-    def __init__(self, config_manager, log_manager) -> None:
-        super().__init__(config_manager, log_manager)
 
-        self.em = event_manager.event_manager(self.cm, self.lm)
+class screen_manager:
+    def __init__(self) -> None:
+        self.em = event_manager.event_manager()
 
         self.screen = self.surface = pygame.Surface(
             (
-                self.cm.get_int("Window", "default_width") / 3,
-                self.cm.get_int("Window", "default_height") / 3,
+                configuration_manager().get_int("Window", "default_width") / 3,
+                configuration_manager().get_int("Window", "default_height") / 3,
             )
         )
 
@@ -21,7 +21,7 @@ class screen_manager(starter):
 
         self.current_state = ""
 
-        self.lm.log.debug("Screen manager initialized.")
+        logging_manager().log.debug("Screen manager initialized.")
 
     def register_screen_handler(self, name, func: str) -> callable:
         """Registers a screen handler"""
@@ -34,7 +34,7 @@ class screen_manager(starter):
         if name in self.callbacks.keys():
             self.current_state = name
         else:
-            self.lm.log.fatal(
+            logging_manager().log.fatal(
                 f"Screen attempted to switch to a non-existent screen: {name}"
             )
 

@@ -1,2 +1,3 @@
 pygame
+singleton-decorator
 git+https://github.com/SoupySoups/pytmx.git#egg=pytmx

@@ -10,5 +10,22 @@
         ],
         "name": "render",
         "type": "class"
+    },
+    {
+        "id": 2,
+        "members": [
+            {
+                "name": "has_ai",
+                "type": "bool",
+                "value": true
+            },
+            {
+                "name": "use_keyboard",
+                "type": "bool",
+                "value": false
+            }
+        ],
+        "name": "movement",
+        "type": "class"
     }
 ]

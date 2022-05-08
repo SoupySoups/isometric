@@ -1,30 +1,25 @@
 import pytmx
 from src.utils.data_types import Point
 import src.utils.sorters as sorters
-from src.utils.templates.manager_starter import starter
+from src.managers.core.logging_manager import logging_manager
 
 
-class data_manager(starter):
-    def __init__(self, config_manager, log_manager):
-        super().__init__(config_manager, log_manager)
-
+class data_manager:
+    def __init__(self):
         self.current_level = None
 
-        self.lm.log.debug("Data manager initialized.")
+        logging_manager().log.debug("Data manager initialized.")
 
     def load_data(self, filename):
-        self.lm.log.info(f"Loading level: {filename}")
-        self.current_level = level(filename, self.cm, self.lm)
+        logging_manager().log.info(f"Loading level: {filename}")
+        self.current_level = level(filename)
 
     def reload_data(self):
-        self.load_data(self.current_level.filename, self.cm, self.lm)
+        self.load_data(self.current_level.filename)
 
 
 class level:
-    def __init__(self, filename, config_manager, log_manager):
-        self.cm = config_manager
-        self.lm = log_manager
-
+    def __init__(self, filename: str):
         # Load TMX file
         self.filename = filename
         self.raw_tmxdata = pytmx.load_pygame(
@@ -48,7 +43,7 @@ class level:
             self.layers, pytmx.TiledTileLayer
         )
 
-        self.lm.log.info(
+        logging_manager().log.info(
             f"Successfully loaded level: {self.filename}, Tiled version: {self.version}"
         )
 

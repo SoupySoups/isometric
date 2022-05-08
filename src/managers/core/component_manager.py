@@ -1,11 +1,17 @@
-from src.utils.templates.manager_starter import starter
+from src.managers.core.logging_manager import logging_manager
 
 
-class component_manager(starter):
-    def __init__(self, config_manager, log_manager):
-        super().__init__(config_manager, log_manager)
+class component_manager:
+    def __init__(self):
+        self.components = {}
 
-        self.lm.log.debug("Component manager initialized.")
+        logging_manager().log.debug("Component manager initialized.")
+
+    def register_component(self, name: str):
+        def decorator(function):
+            self.components[name] = function
+            return function
+        return decorator
 
     def run(self, objs, managers):
         for obj in objs:
@@ -13,4 +19,4 @@ class component_manager(starter):
                 if component in managers:
                     managers[component].component(obj, obj.properties[component])
                 else:
-                    self.lm.log.warning(f"Component {component} not found.")
+                    logging_manager().log.warning(f"Component {component} not found.")
