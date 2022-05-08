@@ -40,8 +40,8 @@ class application_manager:
         }
 
         # Common component managers
-        self.create_singleton_manager("render", camera())
-        self.create_singleton_manager("movement", movement())
+        self.create_manager("render", camera())
+        self.create_manager("movement", movement())
 
         # Regester screens
         self.sm.register_screen_handler("game_frame", self.game_frame)
@@ -57,7 +57,7 @@ class application_manager:
         self.dm.load_data(level_name)
         self.om.load_objects(self.dm.current_level.get_object_layers())
 
-    def create_singleton_manager(self, name: str, manager: any) -> any:
+    def create_manager(self, name: str, manager: any) -> any:
         """Creates a manager."""
         if name in self.managers.keys():
             logging_manager().log.warning(f"Manager {name} already exists.")
