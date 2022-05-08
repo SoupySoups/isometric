@@ -5,13 +5,12 @@ from src.utils.common_routines import quit
 from singleton_decorator import singleton
 
 
-
 @singleton
 class logging_manager:
     """Manages logging needs."""
 
     def __init__(self) -> None:
-        self.log_level = self.log_level_name_to_value('INFO')
+        self.log_level = self.log_level_name_to_value("INFO")
         logging.basicConfig(
             format="%(asctime)s - [%(name)s | %(filename)s:%(lineno)d] - %(levelname)s - %(message)s",
             filename="game.log",
@@ -53,10 +52,11 @@ class logging_manager:
         self.log.setLevel(self.log_level)
         if old != self.log_level:
             self.log.info(
-                "Log level switched to %s.", self.log_level_value_to_name(self.log_level)
+                "Log level switched to %s.",
+                self.log_level_value_to_name(self.log_level),
             )
         return True
-    
+
     @singleton
     class log_type_hander(logging.StreamHandler):
         """Responds to logging events."""

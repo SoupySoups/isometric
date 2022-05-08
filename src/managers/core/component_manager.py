@@ -11,6 +11,7 @@ class component_manager:
         def decorator(function):
             self.components[name] = function
             return function
+
         return decorator
 
     def run(self, objs, managers):

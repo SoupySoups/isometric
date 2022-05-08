@@ -12,6 +12,7 @@ from src.elements.movement import movement
 
 import pygame
 
+
 class application_manager:
     def __init__(self) -> None:
 
@@ -19,7 +20,9 @@ class application_manager:
         # Core Managers
         self.lm = logging_manager()
         self.cm = configuration_manager(filename="config.ini")
-        logging_manager().switch_log_level(configuration_manager().get_str("Logging", "log_level"))
+        logging_manager().switch_log_level(
+            configuration_manager().get_str("Logging", "log_level")
+        )
         self.wm = window_manager()
         self.sm = screen_manager()
         self.dm = data_manager()
@@ -44,7 +47,9 @@ class application_manager:
         self.sm.register_screen_handler("game_frame", self.game_frame)
         self.sm.register_screen_handler("pause_frame", self.pause_frame)
 
-        logging_manager().log.info(f"Successfully created {len(self.managers.keys())} manager(s).")
+        logging_manager().log.info(
+            f"Successfully created {len(self.managers.keys())} manager(s)."
+        )
         logging_manager().log.debug("Application manager initialized.")
 
     # @component_manager().register_component("render")

@@ -5,7 +5,6 @@ import src.managers.core.event_manager as event_manager
 from src.managers.core.configuration_manager import configuration_manager
 
 
-
 class screen_manager:
     def __init__(self) -> None:
         self.em = event_manager.event_manager()

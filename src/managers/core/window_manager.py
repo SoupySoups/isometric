@@ -6,10 +6,12 @@ with QuietPrint():
     import pygame
 
 
-class window_manager():
+class window_manager:
     def __init__(self):
         self.window_name = configuration_manager().get_str("Window", "window_name")
-        self.window_icon = pygame.image.load(configuration_manager().get_str("Window", "window_icon"))
+        self.window_icon = pygame.image.load(
+            configuration_manager().get_str("Window", "window_icon")
+        )
 
         pygame_init_stats = pygame.init()
         if pygame_init_stats[1] != 0:
